@@ -373,6 +373,75 @@
             "order": 4
           },
           {
+            "id": "6",
+            "name": "zizmor-scan",
+            "slug": "zizmor-scan",
+            "stage": "scan",
+            "scope": "project",
+            "action": "builtin://actions/zizmor-scan",
+            "access": {
+              "env": [
+                {
+                  "name": "GH_HOSTNAME",
+                  "description": "GH_HOSTNAME is required for some online audits"
+                },
+                {
+                  "name": "GH_TOKEN",
+                  "description": "GH_TOKEN is required for some online audits. Takes precedence over GITHUB_TOKEN"
+                },
+                {
+                  "name": "GITHUB_TOKEN",
+                  "description": "GITHUB_TOKEN is set automatically by GitHub Actions"
+                }
+              ],
+              "executables": [
+                {
+                  "name": "zizmor",
+                  "constraint": "=\u003e 1.4.1"
+                }
+              ],
+              "network": [
+                {
+                  "host": "github.com:443"
+                },
+                {
+                  "host": "api.github.com:443"
+                },
+                {
+                  "host": "codeload.github.com:443"
+                },
+                {
+                  "host": "uploads.github.com:443"
+                },
+                {
+                  "host": "objects.githubusercontent.com:443"
+                },
+                {
+                  "host": "raw.githubusercontent.com:443"
+                },
+                {
+                  "host": "release-assets.githubusercontent.com:443"
+                },
+                {
+                  "host": "ghcr.io:443"
+                },
+                {
+                  "host": "pkg-containers.githubusercontent.com:443"
+                }
+              ]
+            },
+            "inputs": {},
+            "outputs": {
+              "artifacts": [
+                {
+                  "type": "report",
+                  "format": "sarif"
+                }
+              ]
+            },
+            "order": 5
+          },
+          {
             "id": "5",
             "name": "sonarqube-scan",
             "slug": "sonarqube-scan",
@@ -486,10 +555,10 @@
               ]
             },
             "outputs": {},
-            "order": 5
+            "order": 6
           },
           {
-            "id": "6",
+            "id": "7",
             "name": "codecov-upload",
             "slug": "codecov-upload",
             "stage": "scan",
@@ -578,7 +647,7 @@
               ]
             },
             "outputs": {},
-            "order": 6
+            "order": 7
           }
         ]
       },
@@ -1000,6 +1069,75 @@
             "order": 4
           },
           {
+            "id": "6",
+            "name": "zizmor-scan",
+            "slug": "zizmor-scan",
+            "stage": "scan",
+            "scope": "project",
+            "action": "builtin://actions/zizmor-scan",
+            "access": {
+              "env": [
+                {
+                  "name": "GH_HOSTNAME",
+                  "description": "GH_HOSTNAME is required for some online audits"
+                },
+                {
+                  "name": "GH_TOKEN",
+                  "description": "GH_TOKEN is required for some online audits. Takes precedence over GITHUB_TOKEN"
+                },
+                {
+                  "name": "GITHUB_TOKEN",
+                  "description": "GITHUB_TOKEN is set automatically by GitHub Actions"
+                }
+              ],
+              "executables": [
+                {
+                  "name": "zizmor",
+                  "constraint": "=\u003e 1.4.1"
+                }
+              ],
+              "network": [
+                {
+                  "host": "github.com:443"
+                },
+                {
+                  "host": "api.github.com:443"
+                },
+                {
+                  "host": "codeload.github.com:443"
+                },
+                {
+                  "host": "uploads.github.com:443"
+                },
+                {
+                  "host": "objects.githubusercontent.com:443"
+                },
+                {
+                  "host": "raw.githubusercontent.com:443"
+                },
+                {
+                  "host": "release-assets.githubusercontent.com:443"
+                },
+                {
+                  "host": "ghcr.io:443"
+                },
+                {
+                  "host": "pkg-containers.githubusercontent.com:443"
+                }
+              ]
+            },
+            "inputs": {},
+            "outputs": {
+              "artifacts": [
+                {
+                  "type": "report",
+                  "format": "sarif"
+                }
+              ]
+            },
+            "order": 5
+          },
+          {
             "id": "5",
             "name": "sonarqube-scan",
             "slug": "sonarqube-scan",
@@ -1113,10 +1251,10 @@
               ]
             },
             "outputs": {},
-            "order": 5
+            "order": 6
           },
           {
-            "id": "6",
+            "id": "7",
             "name": "codecov-upload",
             "slug": "codecov-upload",
             "stage": "scan",
@@ -1205,7 +1343,7 @@
               ]
             },
             "outputs": {},
-            "order": 6
+            "order": 7
           }
         ]
       },
@@ -1632,6 +1770,75 @@
             "order": 4
           },
           {
+            "id": "6",
+            "name": "zizmor-scan",
+            "slug": "zizmor-scan",
+            "stage": "scan",
+            "scope": "project",
+            "action": "builtin://actions/zizmor-scan",
+            "access": {
+              "env": [
+                {
+                  "name": "GH_HOSTNAME",
+                  "description": "GH_HOSTNAME is required for some online audits"
+                },
+                {
+                  "name": "GH_TOKEN",
+                  "description": "GH_TOKEN is required for some online audits. Takes precedence over GITHUB_TOKEN"
+                },
+                {
+                  "name": "GITHUB_TOKEN",
+                  "description": "GITHUB_TOKEN is set automatically by GitHub Actions"
+                }
+              ],
+              "executables": [
+                {
+                  "name": "zizmor",
+                  "constraint": "=\u003e 1.4.1"
+                }
+              ],
+              "network": [
+                {
+                  "host": "github.com:443"
+                },
+                {
+                  "host": "api.github.com:443"
+                },
+                {
+                  "host": "codeload.github.com:443"
+                },
+                {
+                  "host": "uploads.github.com:443"
+                },
+                {
+                  "host": "objects.githubusercontent.com:443"
+                },
+                {
+                  "host": "raw.githubusercontent.com:443"
+                },
+                {
+                  "host": "release-assets.githubusercontent.com:443"
+                },
+                {
+                  "host": "ghcr.io:443"
+                },
+                {
+                  "host": "pkg-containers.githubusercontent.com:443"
+                }
+              ]
+            },
+            "inputs": {},
+            "outputs": {
+              "artifacts": [
+                {
+                  "type": "report",
+                  "format": "sarif"
+                }
+              ]
+            },
+            "order": 5
+          },
+          {
             "id": "5",
             "name": "sonarqube-scan",
             "slug": "sonarqube-scan",
@@ -1745,10 +1952,10 @@
               ]
             },
             "outputs": {},
-            "order": 5
+            "order": 6
           },
           {
-            "id": "6",
+            "id": "7",
             "name": "codecov-upload",
             "slug": "codecov-upload",
             "stage": "scan",
@@ -1837,10 +2044,10 @@
               ]
             },
             "outputs": {},
-            "order": 6
+            "order": 7
           },
           {
-            "id": "7",
+            "id": "8",
             "name": "changelog-generate",
             "slug": "changelog-generate",
             "stage": "publish",
@@ -1853,7 +2060,8 @@
               "maven-test-test-app-java-maven",
               "semgrep-scan",
               "sonarqube-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "run-after-by-name": [
               "codecov-upload",
@@ -1862,7 +2070,8 @@
               "maven-test [test-app-java-maven]",
               "semgrep-scan",
               "sonarqube-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "access": {
               "network": [
@@ -1903,10 +2112,10 @@
                 }
               ]
             },
-            "order": 7
+            "order": 8
           },
           {
-            "id": "8",
+            "id": "9",
             "name": "github-release-publish",
             "slug": "github-release-publish",
             "stage": "publish",
@@ -1920,7 +2129,8 @@
               "maven-test-test-app-java-maven",
               "semgrep-scan",
               "sonarqube-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "run-after-by-name": [
               "changelog-generate",
@@ -1930,7 +2140,8 @@
               "maven-test [test-app-java-maven]",
               "semgrep-scan",
               "sonarqube-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of": [
               "changelog-generate"
@@ -1987,7 +2198,7 @@
               ]
             },
             "outputs": {},
-            "order": 8
+            "order": 9
           }
         ]
       },
@@ -2412,6 +2623,75 @@
             "order": 4
           },
           {
+            "id": "6",
+            "name": "zizmor-scan",
+            "slug": "zizmor-scan",
+            "stage": "scan",
+            "scope": "project",
+            "action": "builtin://actions/zizmor-scan",
+            "access": {
+              "env": [
+                {
+                  "name": "GH_HOSTNAME",
+                  "description": "GH_HOSTNAME is required for some online audits"
+                },
+                {
+                  "name": "GH_TOKEN",
+                  "description": "GH_TOKEN is required for some online audits. Takes precedence over GITHUB_TOKEN"
+                },
+                {
+                  "name": "GITHUB_TOKEN",
+                  "description": "GITHUB_TOKEN is set automatically by GitHub Actions"
+                }
+              ],
+              "executables": [
+                {
+                  "name": "zizmor",
+                  "constraint": "=\u003e 1.4.1"
+                }
+              ],
+              "network": [
+                {
+                  "host": "github.com:443"
+                },
+                {
+                  "host": "api.github.com:443"
+                },
+                {
+                  "host": "codeload.github.com:443"
+                },
+                {
+                  "host": "uploads.github.com:443"
+                },
+                {
+                  "host": "objects.githubusercontent.com:443"
+                },
+                {
+                  "host": "raw.githubusercontent.com:443"
+                },
+                {
+                  "host": "release-assets.githubusercontent.com:443"
+                },
+                {
+                  "host": "ghcr.io:443"
+                },
+                {
+                  "host": "pkg-containers.githubusercontent.com:443"
+                }
+              ]
+            },
+            "inputs": {},
+            "outputs": {
+              "artifacts": [
+                {
+                  "type": "report",
+                  "format": "sarif"
+                }
+              ]
+            },
+            "order": 5
+          },
+          {
             "id": "5",
             "name": "sonarqube-scan",
             "slug": "sonarqube-scan",
@@ -2525,10 +2805,10 @@
               ]
             },
             "outputs": {},
-            "order": 5
+            "order": 6
           },
           {
-            "id": "6",
+            "id": "7",
             "name": "codecov-upload",
             "slug": "codecov-upload",
             "stage": "scan",
@@ -2617,7 +2897,7 @@
               ]
             },
             "outputs": {},
-            "order": 6
+            "order": 7
           }
         ]
       },
