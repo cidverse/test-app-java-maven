@@ -1,7 +1,7 @@
 {
   "workflows": {
     "Nightly": {
-      "version": "0.11.13",
+      "version": "0.12.0",
       "name": "Nightly",
       "name_slug": "nightly",
       "job_timeout": 20,
@@ -123,15 +123,15 @@
           },
           {
             "id": "2",
-            "name": "gitleaks-scan",
-            "slug": "gitleaks-scan",
+            "name": "betterleaks-scan",
+            "slug": "betterleaks-scan",
             "stage": "scan",
             "scope": "project",
-            "action": "builtin://actions/gitleaks-scan",
+            "action": "builtin://actions/betterleaks-scan",
             "access": {
               "executables": [
                 {
-                  "name": "gitleaks",
+                  "name": "betterleaks",
                   "constraint": "\u003e= 0.0.0-0"
                 }
               ],
@@ -174,7 +174,7 @@
                 }
               ],
               "network": [
-                "semgrep.dev:443"
+                "http://semgrep.dev:443|GET,HEAD|POST,PUT:/api/**"
               ],
               "resources": [
                 "security-events"
@@ -202,11 +202,11 @@
               "executables": [
                 {
                   "name": "trivy",
-                  "constraint": "=\u003e 0.61.0"
+                  "constraint": "\u003e 0.69.6"
                 }
               ],
               "network": [
-                "mirror.gcr.io:443"
+                "http://mirror.gcr.io:443|GET,HEAD"
               ],
               "resources": [
                 "security-events"
@@ -231,16 +231,28 @@
             "scope": "project",
             "action": "builtin://actions/sonarqube-scan",
             "run-after": [
-              "maven-test-test-app-java-maven"
+              "betterleaks-scan",
+              "maven-test-test-app-java-maven",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "run-after-by-name": [
-              "maven-test [test-app-java-maven]"
+              "betterleaks-scan",
+              "maven-test [test-app-java-maven]",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "uses-output-of": [
-              "maven-test-test-app-java-maven"
+              "betterleaks-scan",
+              "maven-test-test-app-java-maven",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "uses-output-of-by-name": [
-              "maven-test [test-app-java-maven]"
+              "betterleaks-scan",
+              "maven-test [test-app-java-maven]",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "access": {
               "env": [
@@ -294,6 +306,14 @@
                 {
                   "type": "report",
                   "format": "trx"
+                },
+                {
+                  "type": "report",
+                  "format": "go-coverage"
+                },
+                {
+                  "type": "report",
+                  "format": "sarif"
                 }
               ]
             },
@@ -329,14 +349,14 @@
         "pkg:github-action/step-security/harden-runner": {
           "id": "step-security/harden-runner",
           "type": "github-action",
-          "version": "v2.22.3",
-          "hash": "46b06cea07f9e64621fdf066ba77ac6915163d43"
+          "version": "v2.22.4",
+          "hash": "1d88384fd173af6ecb012dfd0264a306b711241a"
         },
         "pkg:github/cidverse/cid": {
           "id": "cidverse/cid",
           "type": "github",
-          "version": "0.11.13",
-          "hash": "800d546523ee7c20a031a250bff0651e741c89211b6bec66bfaeeeb47664f5c9",
+          "version": "0.12.0",
+          "hash": "11f989eb1e3576b043abce9590a5f1f33053b0674002feb02c0c0d71e842fbb6",
           "gpg-fingerprint": "76A4948E69C62589C7B0AB84E414434DF5371FB6"
         }
       },
@@ -352,7 +372,7 @@
       ]
     },
     "Pull Request": {
-      "version": "0.11.13",
+      "version": "0.12.0",
       "name": "Pull Request",
       "name_slug": "pull-request",
       "job_timeout": 20,
@@ -472,15 +492,15 @@
           },
           {
             "id": "2",
-            "name": "gitleaks-scan",
-            "slug": "gitleaks-scan",
+            "name": "betterleaks-scan",
+            "slug": "betterleaks-scan",
             "stage": "scan",
             "scope": "project",
-            "action": "builtin://actions/gitleaks-scan",
+            "action": "builtin://actions/betterleaks-scan",
             "access": {
               "executables": [
                 {
-                  "name": "gitleaks",
+                  "name": "betterleaks",
                   "constraint": "\u003e= 0.0.0-0"
                 }
               ],
@@ -523,7 +543,7 @@
                 }
               ],
               "network": [
-                "semgrep.dev:443"
+                "http://semgrep.dev:443|GET,HEAD|POST,PUT:/api/**"
               ],
               "resources": [
                 "security-events"
@@ -551,11 +571,11 @@
               "executables": [
                 {
                   "name": "trivy",
-                  "constraint": "=\u003e 0.61.0"
+                  "constraint": "\u003e 0.69.6"
                 }
               ],
               "network": [
-                "mirror.gcr.io:443"
+                "http://mirror.gcr.io:443|GET,HEAD"
               ],
               "resources": [
                 "security-events"
@@ -580,16 +600,28 @@
             "scope": "project",
             "action": "builtin://actions/sonarqube-scan",
             "run-after": [
-              "maven-test-test-app-java-maven"
+              "betterleaks-scan",
+              "maven-test-test-app-java-maven",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "run-after-by-name": [
-              "maven-test [test-app-java-maven]"
+              "betterleaks-scan",
+              "maven-test [test-app-java-maven]",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "uses-output-of": [
-              "maven-test-test-app-java-maven"
+              "betterleaks-scan",
+              "maven-test-test-app-java-maven",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "uses-output-of-by-name": [
-              "maven-test [test-app-java-maven]"
+              "betterleaks-scan",
+              "maven-test [test-app-java-maven]",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "access": {
               "env": [
@@ -643,6 +675,14 @@
                 {
                   "type": "report",
                   "format": "trx"
+                },
+                {
+                  "type": "report",
+                  "format": "go-coverage"
+                },
+                {
+                  "type": "report",
+                  "format": "sarif"
                 }
               ]
             },
@@ -678,14 +718,14 @@
         "pkg:github-action/step-security/harden-runner": {
           "id": "step-security/harden-runner",
           "type": "github-action",
-          "version": "v2.22.3",
-          "hash": "46b06cea07f9e64621fdf066ba77ac6915163d43"
+          "version": "v2.22.4",
+          "hash": "1d88384fd173af6ecb012dfd0264a306b711241a"
         },
         "pkg:github/cidverse/cid": {
           "id": "cidverse/cid",
           "type": "github",
-          "version": "0.11.13",
-          "hash": "800d546523ee7c20a031a250bff0651e741c89211b6bec66bfaeeeb47664f5c9",
+          "version": "0.12.0",
+          "hash": "11f989eb1e3576b043abce9590a5f1f33053b0674002feb02c0c0d71e842fbb6",
           "gpg-fingerprint": "76A4948E69C62589C7B0AB84E414434DF5371FB6"
         }
       },
@@ -701,7 +741,7 @@
       ]
     },
     "Release": {
-      "version": "0.11.13",
+      "version": "0.12.0",
       "name": "Release",
       "name_slug": "release",
       "job_timeout": 20,
@@ -823,15 +863,15 @@
           },
           {
             "id": "2",
-            "name": "gitleaks-scan",
-            "slug": "gitleaks-scan",
+            "name": "betterleaks-scan",
+            "slug": "betterleaks-scan",
             "stage": "scan",
             "scope": "project",
-            "action": "builtin://actions/gitleaks-scan",
+            "action": "builtin://actions/betterleaks-scan",
             "access": {
               "executables": [
                 {
-                  "name": "gitleaks",
+                  "name": "betterleaks",
                   "constraint": "\u003e= 0.0.0-0"
                 }
               ],
@@ -874,7 +914,7 @@
                 }
               ],
               "network": [
-                "semgrep.dev:443"
+                "http://semgrep.dev:443|GET,HEAD|POST,PUT:/api/**"
               ],
               "resources": [
                 "security-events"
@@ -902,11 +942,11 @@
               "executables": [
                 {
                   "name": "trivy",
-                  "constraint": "=\u003e 0.61.0"
+                  "constraint": "\u003e 0.69.6"
                 }
               ],
               "network": [
-                "mirror.gcr.io:443"
+                "http://mirror.gcr.io:443|GET,HEAD"
               ],
               "resources": [
                 "security-events"
@@ -931,16 +971,28 @@
             "scope": "project",
             "action": "builtin://actions/sonarqube-scan",
             "run-after": [
-              "maven-test-test-app-java-maven"
+              "betterleaks-scan",
+              "maven-test-test-app-java-maven",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "run-after-by-name": [
-              "maven-test [test-app-java-maven]"
+              "betterleaks-scan",
+              "maven-test [test-app-java-maven]",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "uses-output-of": [
-              "maven-test-test-app-java-maven"
+              "betterleaks-scan",
+              "maven-test-test-app-java-maven",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "uses-output-of-by-name": [
-              "maven-test [test-app-java-maven]"
+              "betterleaks-scan",
+              "maven-test [test-app-java-maven]",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "access": {
               "env": [
@@ -994,6 +1046,14 @@
                 {
                   "type": "report",
                   "format": "trx"
+                },
+                {
+                  "type": "report",
+                  "format": "go-coverage"
+                },
+                {
+                  "type": "report",
+                  "format": "sarif"
                 }
               ]
             },
@@ -1008,7 +1068,7 @@
             "scope": "project",
             "action": "builtin://actions/changelog-generate",
             "run-after": [
-              "gitleaks-scan",
+              "betterleaks-scan",
               "maven-build-test-app-java-maven",
               "maven-test-test-app-java-maven",
               "semgrep-scan",
@@ -1016,7 +1076,7 @@
               "trivyfs-scan"
             ],
             "run-after-by-name": [
-              "gitleaks-scan",
+              "betterleaks-scan",
               "maven-build [test-app-java-maven]",
               "maven-test [test-app-java-maven]",
               "semgrep-scan",
@@ -1042,8 +1102,8 @@
             "scope": "project",
             "action": "builtin://actions/github-release-publish",
             "run-after": [
+              "betterleaks-scan",
               "changelog-generate",
-              "gitleaks-scan",
               "maven-build-test-app-java-maven",
               "maven-test-test-app-java-maven",
               "semgrep-scan",
@@ -1051,8 +1111,8 @@
               "trivyfs-scan"
             ],
             "run-after-by-name": [
+              "betterleaks-scan",
               "changelog-generate",
-              "gitleaks-scan",
               "maven-build [test-app-java-maven]",
               "maven-test [test-app-java-maven]",
               "semgrep-scan",
@@ -1122,14 +1182,14 @@
         "pkg:github-action/step-security/harden-runner": {
           "id": "step-security/harden-runner",
           "type": "github-action",
-          "version": "v2.22.3",
-          "hash": "46b06cea07f9e64621fdf066ba77ac6915163d43"
+          "version": "v2.22.4",
+          "hash": "1d88384fd173af6ecb012dfd0264a306b711241a"
         },
         "pkg:github/cidverse/cid": {
           "id": "cidverse/cid",
           "type": "github",
-          "version": "0.11.13",
-          "hash": "800d546523ee7c20a031a250bff0651e741c89211b6bec66bfaeeeb47664f5c9",
+          "version": "0.12.0",
+          "hash": "11f989eb1e3576b043abce9590a5f1f33053b0674002feb02c0c0d71e842fbb6",
           "gpg-fingerprint": "76A4948E69C62589C7B0AB84E414434DF5371FB6"
         }
       },
@@ -1145,7 +1205,7 @@
       ]
     },
     "Main": {
-      "version": "0.11.13",
+      "version": "0.12.0",
       "name": "Main",
       "name_slug": "main",
       "job_timeout": 20,
@@ -1265,15 +1325,15 @@
           },
           {
             "id": "2",
-            "name": "gitleaks-scan",
-            "slug": "gitleaks-scan",
+            "name": "betterleaks-scan",
+            "slug": "betterleaks-scan",
             "stage": "scan",
             "scope": "project",
-            "action": "builtin://actions/gitleaks-scan",
+            "action": "builtin://actions/betterleaks-scan",
             "access": {
               "executables": [
                 {
-                  "name": "gitleaks",
+                  "name": "betterleaks",
                   "constraint": "\u003e= 0.0.0-0"
                 }
               ],
@@ -1316,7 +1376,7 @@
                 }
               ],
               "network": [
-                "semgrep.dev:443"
+                "http://semgrep.dev:443|GET,HEAD|POST,PUT:/api/**"
               ],
               "resources": [
                 "security-events"
@@ -1344,11 +1404,11 @@
               "executables": [
                 {
                   "name": "trivy",
-                  "constraint": "=\u003e 0.61.0"
+                  "constraint": "\u003e 0.69.6"
                 }
               ],
               "network": [
-                "mirror.gcr.io:443"
+                "http://mirror.gcr.io:443|GET,HEAD"
               ],
               "resources": [
                 "security-events"
@@ -1373,16 +1433,28 @@
             "scope": "project",
             "action": "builtin://actions/sonarqube-scan",
             "run-after": [
-              "maven-test-test-app-java-maven"
+              "betterleaks-scan",
+              "maven-test-test-app-java-maven",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "run-after-by-name": [
-              "maven-test [test-app-java-maven]"
+              "betterleaks-scan",
+              "maven-test [test-app-java-maven]",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "uses-output-of": [
-              "maven-test-test-app-java-maven"
+              "betterleaks-scan",
+              "maven-test-test-app-java-maven",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "uses-output-of-by-name": [
-              "maven-test [test-app-java-maven]"
+              "betterleaks-scan",
+              "maven-test [test-app-java-maven]",
+              "semgrep-scan",
+              "trivyfs-scan"
             ],
             "access": {
               "env": [
@@ -1436,6 +1508,14 @@
                 {
                   "type": "report",
                   "format": "trx"
+                },
+                {
+                  "type": "report",
+                  "format": "go-coverage"
+                },
+                {
+                  "type": "report",
+                  "format": "sarif"
                 }
               ]
             },
@@ -1471,14 +1551,14 @@
         "pkg:github-action/step-security/harden-runner": {
           "id": "step-security/harden-runner",
           "type": "github-action",
-          "version": "v2.22.3",
-          "hash": "46b06cea07f9e64621fdf066ba77ac6915163d43"
+          "version": "v2.22.4",
+          "hash": "1d88384fd173af6ecb012dfd0264a306b711241a"
         },
         "pkg:github/cidverse/cid": {
           "id": "cidverse/cid",
           "type": "github",
-          "version": "0.11.13",
-          "hash": "800d546523ee7c20a031a250bff0651e741c89211b6bec66bfaeeeb47664f5c9",
+          "version": "0.12.0",
+          "hash": "11f989eb1e3576b043abce9590a5f1f33053b0674002feb02c0c0d71e842fbb6",
           "gpg-fingerprint": "76A4948E69C62589C7B0AB84E414434DF5371FB6"
         }
       },
